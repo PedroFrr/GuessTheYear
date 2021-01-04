@@ -71,6 +71,14 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
         }
 
+        gameViewModel.getScore().observe(viewLifecycleOwner) { score ->
+            showScore(score)
+        }
+
+        gameViewModel.getTimer().observe(viewLifecycleOwner) { timer ->
+            updateTimer(timer)
+        }
+
     }
 
     private fun showQuestions(question: Question){
@@ -86,7 +94,18 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     private fun showLoading(show: Boolean) {
         binding.loadingLayout.loadingContainer.visibility = if (show) View.VISIBLE else View.GONE
         binding.mainGroup.visibility = View.GONE
-//        noResultsTextView.visibility = View.GONE
+    }
+
+    private fun showError(show: Boolean){
+        //TODO
+    }
+
+    private fun showScore(score: Int){
+        binding.scoreTextView.text = getString(R.string.game_score, score)
+    }
+
+    private fun updateTimer(timer: Long){
+        binding.timerTextView.text = getString(R.string.question_timer, timer)
     }
 
 
