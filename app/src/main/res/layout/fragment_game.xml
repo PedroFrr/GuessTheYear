@@ -85,6 +85,22 @@
             app:layout_constraintTop_toBottomOf="@+id/thirdAnswerButton"
             tools:text="Answer4" />
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/mainGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="firstAnswerButton,secondAnswerButton,thirdAnswerButton,fourthAnswerButton,questionImage,questionText" />
+
+
+        <include
+            android:id="@+id/loadingLayout"
+            layout="@layout/view_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -1,17 +1,14 @@
 package com.pedrofr.guesstheyear.di
 
-import com.fevziomurtekin.deezer.domain.network.DeezerClient
+import com.pedrofr.guesstheyear.networking.DeezerClient
 import com.fevziomurtekin.deezer.domain.network.DeezerService
 import com.pedrofr.guesstheyear.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton

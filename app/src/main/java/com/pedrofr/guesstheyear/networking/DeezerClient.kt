@@ -1,5 +1,6 @@
-package com.fevziomurtekin.deezer.domain.network
+package com.pedrofr.guesstheyear.networking
 
+import com.fevziomurtekin.deezer.domain.network.DeezerService
 import com.pedrofr.guesstheyear.data.model.Failure
 import com.pedrofr.guesstheyear.data.model.Question
 import com.pedrofr.guesstheyear.data.model.Success
@@ -14,7 +15,7 @@ class DeezerClient @Inject constructor(
         try{
             Success(RemoteApi.fetchQuestions())
         }catch (error: Throwable){
-            Failure(error)
+            Failure
         }
 }
 

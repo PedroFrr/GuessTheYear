@@ -1,6 +1,8 @@
 package com.pedrofr.guesstheyear.data.model
 
-import com.fevziomurtekin.deezer.domain.network.DeezerClient
+import com.pedrofr.guesstheyear.networking.DeezerClient
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -8,19 +10,17 @@ import javax.inject.Singleton
  * Repository module for handling data operations.
  */
 @Singleton
-class QuestionRepositoryImpl @Inject constructor(
+class RepositoryImpl @Inject constructor(
     private val deezerClient: DeezerClient
-) : QuestionRepository {
+) : Repository {
 
-    override suspend fun getQuestions(): List<Question> {
-
+    override suspend fun getQuestions(): Result<List<Question>> {
         val results = deezerClient.fetchQuestions()
         return if (results is Success) {
-            results.data
-        }else {
-            listOf()
+            Success(results.data)
+        } else {
+            Failure
         }
-
     }
 
 }

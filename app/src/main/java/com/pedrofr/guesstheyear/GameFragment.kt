@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.pedrofr.guesstheyear.data.model.Lost
+import com.pedrofr.guesstheyear.data.model.Question
 import com.pedrofr.guesstheyear.data.model.Won
 import com.pedrofr.guesstheyear.databinding.FragmentGameBinding
 import com.pedrofr.guesstheyear.utils.viewBinding
@@ -43,6 +44,11 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     }
 
     private fun initObservables() {
+
+        gameViewModel.getLoading().observe(viewLifecycleOwner) {
+            it?.let { loading -> showLoading(loading) }
+        }
+
         gameViewModel.getGameState().observe(viewLifecycleOwner) { gameState ->
             when (gameState) {
                 Won -> view?.findNavController()
@@ -54,15 +60,33 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
 
         gameViewModel.getCurrentQuestion().observe(viewLifecycleOwner) { question ->
-            binding.questionText.text = question.text
+            if(question.questionId.isNotEmpty()){
+                binding.mainGroup.visibility = View.VISIBLE
+                binding.questionText.text = question.text
+
+                showQuestions(question)
+            }else{
+                binding.mainGroup.visibility = View.GONE
+            }
+
         }
 
+    }
+
+    private fun showQuestions(question: Question){
         gameViewModel.getAnswers().observe(viewLifecycleOwner) { answers ->
             binding.firstAnswerButton.text = answers[0]
             binding.secondAnswerButton.text = answers[1]
             binding.thirdAnswerButton.text = answers[2]
             binding.fourthAnswerButton.text = answers[3]
         }
+
+    }
+
+    private fun showLoading(show: Boolean) {
+        binding.loadingLayout.loadingContainer.visibility = if (show) View.VISIBLE else View.GONE
+        binding.mainGroup.visibility = View.GONE
+//        noResultsTextView.visibility = View.GONE
     }
 
 
