@@ -1,4 +1,4 @@
-package com.pedrofr.guesstheyear
+package com.pedrofr.guesstheyear.data.model
 
 //TODO revise
 

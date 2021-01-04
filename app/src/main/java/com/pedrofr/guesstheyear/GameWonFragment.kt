@@ -17,7 +17,13 @@ class GameWonFragment : Fragment(R.layout.fragment_game_won) {
     override fun onViewCreated(view: View, bundle: Bundle?) {
         super.onViewCreated(view, bundle)
 
-        //TODO set button actions
+        initUi()
+    }
+
+    private fun initUi() {
+        binding.nextMatchButton.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_gameWonFragment_to_gameFragment)
+        }
     }
 
 }
