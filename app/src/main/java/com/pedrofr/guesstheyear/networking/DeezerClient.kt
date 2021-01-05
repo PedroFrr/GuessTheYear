@@ -15,6 +15,15 @@ class DeezerClient @Inject constructor(
         try{
             Success(RemoteApi.fetchQuestions())
         }catch (error: Throwable){
+            //TODO change failure to also return error
+            Failure
+        }
+
+    suspend fun fetchTracks() =
+        try {
+            val response = deezerService.fetchTrack(3135556)
+            Success(response)
+        }catch (error: Throwable){
             Failure
         }
 }

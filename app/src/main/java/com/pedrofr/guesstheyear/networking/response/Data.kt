@@ -1,14 +1,14 @@
-package com.pedrofr.guesstheyear.data.model
+package com.pedrofr.guesstheyear.networking.response
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.squareup.moshi.Json
 import kotlinx.serialization.Serializable
 
 @Entity
-@Serializable
 data class Data(
     @PrimaryKey var id: String,
-    var name: String?,
+    @field:Json(name = "sport_key") var name: String?,
     var picture: String?,
     var picture_big: String?,
     var picture_medium: String?,
