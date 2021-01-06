@@ -7,5 +7,5 @@ interface Repository {
 
     suspend fun getQuestions(): Result<List<Question>>
 
-    suspend fun getTrack(): Result<TrackResponse>
+    suspend fun getTracks(): Result<List<TrackResponse>>
 }

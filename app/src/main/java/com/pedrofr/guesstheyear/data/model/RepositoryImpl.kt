@@ -2,8 +2,6 @@ package com.pedrofr.guesstheyear.data.model
 
 import com.pedrofr.guesstheyear.networking.DeezerClient
 import com.pedrofr.guesstheyear.networking.response.TrackResponse
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,7 +22,7 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getTrack(): Result<TrackResponse> {
+    override suspend fun getTracks(): Result<List<TrackResponse>> {
         val results = deezerClient.fetchTracks()
         return if (results is Success) {
             Success(results.data)

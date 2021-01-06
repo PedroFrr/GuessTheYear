@@ -60,12 +60,11 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
 
         gameViewModel.getCurrentQuestion().observe(viewLifecycleOwner) { question ->
-            if(question.questionId.isNotEmpty()){
+            if (question.title.isNotEmpty()) {
                 binding.mainGroup.visibility = View.VISIBLE
-                binding.questionText.text = question.text
+                binding.questionText.text = question.title
 
-                showQuestions(question)
-            }else{
+            } else {
                 binding.mainGroup.visibility = View.GONE
             }
 
@@ -79,9 +78,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
             updateTimer(timer)
         }
 
-    }
-
-    private fun showQuestions(question: Question){
         gameViewModel.getAnswers().observe(viewLifecycleOwner) { answers ->
             binding.firstAnswerButton.text = answers[0]
             binding.secondAnswerButton.text = answers[1]
@@ -96,15 +92,15 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         binding.mainGroup.visibility = View.GONE
     }
 
-    private fun showError(show: Boolean){
+    private fun showError(show: Boolean) {
         //TODO
     }
 
-    private fun showScore(score: Int){
+    private fun showScore(score: Int) {
         binding.scoreTextView.text = getString(R.string.game_score, score)
     }
 
-    private fun updateTimer(timer: Long){
+    private fun updateTimer(timer: Long) {
         binding.timerTextView.text = getString(R.string.question_timer, timer)
     }
 

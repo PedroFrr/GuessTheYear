@@ -18,6 +18,8 @@ android {
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // Required when setting minSdkVersion to 20 or lower
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -27,6 +29,9 @@ android {
         }
     }
     compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+        // Sets Java compatibility to Java 8
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -83,5 +88,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
 
+    // Dependency with the implementation code for the APIs
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
 
 }
