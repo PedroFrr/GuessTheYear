@@ -1,7 +1,9 @@
 package com.pedrofr.guesstheyear.di
 
-import com.pedrofr.guesstheyear.data.model.Repository
-import com.pedrofr.guesstheyear.data.model.RepositoryImpl
+import com.pedrofr.guesstheyear.domain.repository.Repository
+import com.pedrofr.guesstheyear.data.RepositoryImpl
+import com.pedrofr.guesstheyear.data.network.mapper.ApiMapper
+import com.pedrofr.guesstheyear.data.network.mapper.ApiMapperImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,4 +17,9 @@ abstract class RepositoryModule {
     abstract fun providesRepository(
         impl: RepositoryImpl
     ) : Repository
+
+    @Binds
+    abstract fun providesApiMapper(
+        impl: ApiMapperImpl
+    ) : ApiMapper
 }
