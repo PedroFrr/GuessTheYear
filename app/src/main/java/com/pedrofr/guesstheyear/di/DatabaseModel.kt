@@ -1,8 +1,8 @@
 package com.pedrofr.guesstheyear.di
 
 import android.content.Context
-import com.pedrofr.guesstheyear.data.model.AppDatabase
-import com.pedrofr.guesstheyear.data.model.QuestionDao
+import com.pedrofr.guesstheyear.data.db.AppDatabase
+import com.pedrofr.guesstheyear.data.db.dao.TracksDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,10 +20,12 @@ class DatabaseModel {
         return AppDatabase.getInstance(context)
     }
 
+
     @Provides
-    fun provideQuestionDao(appDatabase: AppDatabase): QuestionDao {
-        return appDatabase.questionDao()
+    fun provideTracksDao(appDatabase: AppDatabase): TracksDao {
+        return appDatabase.tracksDao()
     }
+
 
 
 

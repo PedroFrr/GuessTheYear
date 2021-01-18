@@ -1,8 +1,8 @@
 package com.pedrofr.guesstheyear.di
 
-import com.pedrofr.guesstheyear.networking.DeezerClient
-import com.fevziomurtekin.deezer.domain.network.DeezerService
-import com.pedrofr.guesstheyear.utils.BASE_URL
+import com.pedrofr.guesstheyear.data.network.client.DeezerClient
+import com.pedrofr.guesstheyear.data.network.client.DeezerService
+import com.pedrofr.guesstheyear.util.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

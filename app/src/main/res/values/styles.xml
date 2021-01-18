@@ -7,4 +7,28 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <!-- Splash Screen Theme -->
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <!-- ExoPlayer custom controls-->
+    <!-- TODO I'll need to set this specific style to 0 in order to hide them -->
+    <style name="CustomExoMediaButton">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_width">@dimen/video_view_exo_player_play_pause_button_dimen</item>
+        <item name="android:layout_height">@dimen/video_view_exo_player_play_pause_button_dimen</item>
+    </style>
+
+    <style name="CustomExoMediaButton.Play">
+        <item name="android:src">@drawable/ic_play_circle_filled</item>
+    </style>
+
+    <style name="CustomExoMediaButton.Pause">
+        <item name="android:src">@drawable/ic_pause_circle_filled</item>
+    </style>
 </resources>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/titleFragment"
-        android:name="com.pedrofr.guesstheyear.TitleFragment"
+        android:name="com.pedrofr.guesstheyear.ui.TitleFragment"
         android:label="TitleFragment"
         tools:layout="@layout/fragment_title">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.pedrofr.guesstheyear.GameFragment"
+        android:name="com.pedrofr.guesstheyear.ui.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" >
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameLostFragment"
-        android:name="com.pedrofr.guesstheyear.GameLostFragment"
+        android:name="com.pedrofr.guesstheyear.ui.GameLostFragment"
         android:label="fragment_game_lost"
         tools:layout="@layout/fragment_game_lost" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameWonFragment"
-        android:name="com.pedrofr.guesstheyear.GameWonFragment"
+        android:name="com.pedrofr.guesstheyear.ui.GameWonFragment"
         android:label="fragment_game_won"
         tools:layout="@layout/fragment_game_won" >
         <action

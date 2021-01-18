@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gameOverBackground"
-    tools:context=".GameLostFragment">
+    tools:context=".ui.GameLostFragment">
 
     <ImageView
         android:id="@+id/tryAgainImage"
