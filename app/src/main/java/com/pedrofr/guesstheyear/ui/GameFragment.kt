@@ -1,19 +1,23 @@
 package com.pedrofr.guesstheyear.ui
 
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.util.Util
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.pedrofr.guesstheyear.R
 import com.pedrofr.guesstheyear.core.Lost
 import com.pedrofr.guesstheyear.core.Won
 import com.pedrofr.guesstheyear.databinding.FragmentGameBinding
 import com.pedrofr.guesstheyear.util.gone
+import com.pedrofr.guesstheyear.util.loadImage
 import com.pedrofr.guesstheyear.util.viewBinding
 import com.pedrofr.guesstheyear.util.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -89,6 +93,9 @@ class GameFragment : Fragment(R.layout.fragment_game) {
             if (question.title.isNotEmpty()) {
                 gameViewModel.play(question.preview)
                 binding.questionText.text = question.title
+
+                binding.videoViewCover.loadImage(question.albumCover)
+
                 gameViewModel.play(question.preview) //TODO review
                 binding.mainGroup.visible()
 
