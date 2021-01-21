@@ -4,8 +4,9 @@ import android.content.Context
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
+import javax.inject.Inject
 
-class MediaPlayerImpl: MediaPlayer {
+class MediaPlayerImpl @Inject constructor(): MediaPlayer {
     private lateinit var exoPlayer: SimpleExoPlayer
     private lateinit var context: Context //todo dependency inject
     private var currentWindow: Int = 0

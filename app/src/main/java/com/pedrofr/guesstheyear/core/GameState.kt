@@ -7,3 +7,5 @@ sealed class GameState
 object Won: GameState()
 
 object Lost: GameState()
+
+object OnGoing: GameState()

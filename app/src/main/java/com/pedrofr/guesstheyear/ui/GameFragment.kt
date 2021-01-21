@@ -1,17 +1,11 @@
 package com.pedrofr.guesstheyear.ui
 
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.pedrofr.guesstheyear.R
 import com.pedrofr.guesstheyear.core.Lost
 import com.pedrofr.guesstheyear.core.Won
@@ -22,13 +16,10 @@ import com.pedrofr.guesstheyear.util.viewBinding
 import com.pedrofr.guesstheyear.util.visible
 import dagger.hilt.android.AndroidEntryPoint
 
-//TODO start player on onStart, onResume...
-
 @AndroidEntryPoint
 class GameFragment : Fragment(R.layout.fragment_game) {
 
     private val binding by viewBinding(FragmentGameBinding::bind)
-
     private val gameViewModel by viewModels<GameViewModel>()
 
     override fun onViewCreated(view: View, bundle: Bundle?) {
@@ -39,7 +30,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     }
 
     override fun onPause() {
-        super.onPause()
         super.onPause()
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             gameViewModel.releasePlayer()
@@ -56,20 +46,23 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
     private fun initUi() {
 
-        binding.firstAnswerButton.setOnClickListener {
-            gameViewModel.setAnswer(answerIndex = 0)
-        }
-        binding.secondAnswerButton.setOnClickListener {
-            gameViewModel.setAnswer(answerIndex = 1)
-        }
-        binding.thirdAnswerButton.setOnClickListener {
-            gameViewModel.setAnswer(answerIndex = 2)
-        }
-        binding.fourthAnswerButton.setOnClickListener {
-            gameViewModel.setAnswer(answerIndex = 3)
-        }
+        //TODO revise this logic
+        binding.apply {
+            firstAnswerButton.setOnClickListener {
+                gameViewModel.answerQuestion(firstAnswerButton.text.toString())
+            }
+            secondAnswerButton.setOnClickListener {
+                gameViewModel.answerQuestion(secondAnswerButton.text.toString())
+            }
+            thirdAnswerButton.setOnClickListener {
+                gameViewModel.answerQuestion(thirdAnswerButton.text.toString())
+            }
+            fourthAnswerButton.setOnClickListener {
+                gameViewModel.answerQuestion(fourthAnswerButton.text.toString())
+            }
 
-        binding.videoView.player = gameViewModel.getPlayer().getPlayerImpl(requireContext())
+            videoView.player = gameViewModel.getPlayer().getPlayerImpl(requireContext())
+        }
 
     }
 
@@ -81,62 +74,52 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
         gameViewModel.getGameState().observe(viewLifecycleOwner) { gameState ->
             when (gameState) {
-                Won -> view?.findNavController()
-                    ?.navigate(R.id.action_gameFragment_to_gameWonFragment)
-                Lost -> view?.findNavController()
-                    ?.navigate(R.id.action_gameFragment_to_gameLostFragment)
-
+                Won -> view?.findNavController()?.navigate(R.id.action_gameFragment_to_gameWonFragment)
+                Lost -> view?.findNavController()?.navigate(R.id.action_gameFragment_to_gameLostFragment)
             }
         }
 
         gameViewModel.getCurrentQuestion().observe(viewLifecycleOwner) { question ->
-            if (question.title.isNotEmpty()) {
-                gameViewModel.play(question.preview)
-                binding.questionText.text = question.title
 
-                binding.videoViewCover.loadImage(question.albumCover)
+            //TODO review as I don't think it should be necessary to have this here
+            if(question != null){
+                gameViewModel.play(question.trackPreview)
 
-                gameViewModel.play(question.preview) //TODO review
-                binding.mainGroup.visible()
+                binding.apply {
+                    //Set question data
+                    questionText.text = question.trackTitle
+                    videoViewCover.loadImage(question.albumCover)
 
-            } else {
-                binding.mainGroup.visibility = View.GONE
+                    //set question options
+                    firstAnswerButton.text = question.options[0]
+                    secondAnswerButton.text = question.options[1]
+                    thirdAnswerButton.text = question.options[2]
+                    fourthAnswerButton.text = question.options[3]
+
+                    mainGroup.visible()
+                }
             }
 
         }
 
         gameViewModel.getScore().observe(viewLifecycleOwner) { score ->
-            showScore(score)
+            binding.scoreTextView.text = getString(R.string.game_score, score)
         }
 
         gameViewModel.getTimer().observe(viewLifecycleOwner) { timer ->
-            updateTimer(timer)
+            binding.timerTextView.text = getString(R.string.question_timer, timer)
         }
 
-        gameViewModel.getAnswers().observe(viewLifecycleOwner) { answers ->
-            binding.firstAnswerButton.text = answers[0]
-            binding.secondAnswerButton.text = answers[1]
-            binding.thirdAnswerButton.text = answers[2]
-            binding.fourthAnswerButton.text = answers[3]
-        }
 
     }
 
     private fun showLoading(show: Boolean) {
         binding.mainGroup.gone()
-        if(show) binding.loadingLayout.loadingContainer.visible() else binding.loadingLayout.loadingContainer.gone()
+        if (show) binding.loadingLayout.loadingContainer.visible() else binding.loadingLayout.loadingContainer.gone()
     }
 
     private fun showError(show: Boolean) {
         //TODO
-    }
-
-    private fun showScore(score: Int) {
-        binding.scoreTextView.text = getString(R.string.game_score, score)
-    }
-
-    private fun updateTimer(timer: Long) {
-        binding.timerTextView.text = getString(R.string.question_timer, timer)
     }
 
 }
