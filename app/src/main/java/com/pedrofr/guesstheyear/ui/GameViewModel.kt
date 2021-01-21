@@ -56,31 +56,31 @@ class GameViewModel @ViewModelInject constructor(
                 _errorLiveData.value = false
                 _loadingLiveData.value = false
                 nextQuestion()
-
             } //?: _errorLiveData.value = false
-
         }
-        startCountdown()
+
     }
 
     fun nextQuestion() {
         game?.let {
             _currentQuestion.value = it.nextQuestion()
+            startCountdown()
         }
     }
 
     fun answerQuestion(option: String) {
         game?.let {
             it.answer(_currentQuestion.value!!, option) //TODO revise this logic
+            countDownTimer.cancel()
             _score.value = _score.value?.plus(1)
             nextQuestion()
             _gameState.value = game?.gameState
-
 
         }
     }
 
     private fun startCountdown() {
+
         val initialTimeLeft = initialCountDown / 1000
         _timer.value = initialTimeLeft
 
@@ -91,9 +91,12 @@ class GameViewModel @ViewModelInject constructor(
             }
 
             override fun onFinish() {
+                countDownTimer.cancel()
                 nextQuestion()
             }
         }
+
+        countDownTimer.start()
     }
 
 
