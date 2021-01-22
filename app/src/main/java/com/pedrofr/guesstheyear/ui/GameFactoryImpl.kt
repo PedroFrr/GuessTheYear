@@ -23,7 +23,7 @@ class GameFactoryImpl @Inject constructor(
     }
 
     private fun buildQuestions(tracks: List<DbTracks>): List<Question> = tracks.map { track ->
-        //TODO the correct option might not be selected (use scan)
+        //TODO the correct option might not be available (use scan)
         val options: List<String> = (1..4).map {
             Random.nextInt(
                 track.releaseYear.minus(2),

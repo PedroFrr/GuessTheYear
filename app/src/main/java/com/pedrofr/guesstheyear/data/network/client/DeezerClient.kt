@@ -15,9 +15,12 @@ class DeezerClient @Inject constructor(
 
     suspend fun fetchTracks(): Result<List<TrackResponse>> =
         try {
-            //TODO replace with real API call
-            val response = RemoteApi.fetchTracks()
-            Success(response)
+                val tracks = mutableListOf<TrackResponse>()
+                for (i in 3135556..3135566) { //TODO review I need to get another way of obtaining famous songs
+                    val track = deezerService.fetchTrack(i.toLong())
+                    tracks.add(track)
+                }
+            Success(tracks)
         } catch (error: Throwable) {
             Failure(error)
         }

@@ -37,8 +37,9 @@ class GameViewModel @ViewModelInject constructor(
     private val initialCountDown: Long = 10000
     private val countDownInterval: Long = 1000
     private lateinit var countDownTimer: CountDownTimer
-    private val _timer = MutableLiveData<Long>(0)
-    fun getTimer() = _timer
+
+    private val _timer = MutableLiveData<Long>()
+    fun getTimer(): LiveData<Long> = _timer
 
     private var game: Game? = null
 
@@ -70,12 +71,11 @@ class GameViewModel @ViewModelInject constructor(
 
     fun answerQuestion(option: String) {
         game?.let {
-            it.answer(_currentQuestion.value!!, option) //TODO revise this logic
+            it.answer(option)
             countDownTimer.cancel()
-            _score.value = _score.value?.plus(1)
+            _score.value = it.score
             nextQuestion()
-            _gameState.value = game?.gameState
-
+            _gameState.value = it.gameState
         }
     }
 
