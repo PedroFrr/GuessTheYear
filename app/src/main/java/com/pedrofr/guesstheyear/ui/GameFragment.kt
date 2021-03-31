@@ -12,8 +12,8 @@ import com.pedrofr.guesstheyear.core.Won
 import com.pedrofr.guesstheyear.databinding.FragmentGameBinding
 import com.pedrofr.guesstheyear.util.gone
 import com.pedrofr.guesstheyear.util.loadImage
-import com.pedrofr.guesstheyear.util.viewBinding
 import com.pedrofr.guesstheyear.util.visible
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -74,15 +74,17 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
         gameViewModel.getGameState().observe(viewLifecycleOwner) { gameState ->
             when (gameState) {
-                Won -> view?.findNavController()?.navigate(R.id.action_gameFragment_to_gameWonFragment)
-                Lost -> view?.findNavController()?.navigate(R.id.action_gameFragment_to_gameLostFragment)
+                Won -> view?.findNavController()
+                    ?.navigate(R.id.action_gameFragment_to_gameWonFragment)
+                Lost -> view?.findNavController()
+                    ?.navigate(R.id.action_gameFragment_to_gameLostFragment)
             }
         }
 
         gameViewModel.getCurrentQuestion().observe(viewLifecycleOwner) { question ->
 
             //TODO review as I don't think it should be necessary to have this here
-            if(question != null){
+            if (question != null) {
                 gameViewModel.play(question.trackPreview)
 
                 binding.apply {

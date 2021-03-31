@@ -49,13 +49,13 @@ fun View.invisible() {
     visibility = View.INVISIBLE
 }
 
-fun String.dateToYear(): Int{
+fun String.dateToYear(): Int {
     return LocalDate.parse(this).year
 }
 
-fun Context.getMyDrawable(id : Int) : Drawable?{
+fun Context.getMyDrawable(id: Int): Drawable? {
 
-    return  ContextCompat.getDrawable(this, id)
+    return ContextCompat.getDrawable(this, id)
 }
 
 /**

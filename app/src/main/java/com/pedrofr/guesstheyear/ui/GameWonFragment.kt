@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.pedrofr.guesstheyear.R
 import com.pedrofr.guesstheyear.databinding.FragmentGameWonBinding
-import com.pedrofr.guesstheyear.util.viewBinding
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 class GameWonFragment : Fragment(R.layout.fragment_game_won) {
 

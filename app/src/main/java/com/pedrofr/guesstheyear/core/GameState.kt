@@ -4,8 +4,8 @@ package com.pedrofr.guesstheyear.core
 
 sealed class GameState
 
-object Won: GameState()
+object Won : GameState()
 
-object Lost: GameState()
+object Lost : GameState()
 
-object OnGoing: GameState()
+object OnGoing : GameState()

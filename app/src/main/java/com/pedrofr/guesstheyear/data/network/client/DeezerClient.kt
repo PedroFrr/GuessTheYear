@@ -3,7 +3,6 @@ package com.pedrofr.guesstheyear.data.network.client
 import com.pedrofr.guesstheyear.core.Failure
 import com.pedrofr.guesstheyear.core.Result
 import com.pedrofr.guesstheyear.core.Success
-import com.pedrofr.guesstheyear.data.db.entities.DbQuestions
 import com.pedrofr.guesstheyear.data.network.response.AlbumResponse
 import com.pedrofr.guesstheyear.data.network.response.TrackResponse
 import kotlinx.coroutines.delay
@@ -15,11 +14,11 @@ class DeezerClient @Inject constructor(
 
     suspend fun fetchTracks(): Result<List<TrackResponse>> =
         try {
-                val tracks = mutableListOf<TrackResponse>()
-                for (i in 3135556..3135566) { //TODO review I need to get another way of obtaining famous songs
-                    val track = deezerService.fetchTrack(i.toLong())
-                    tracks.add(track)
-                }
+            val tracks = mutableListOf<TrackResponse>()
+            for (i in 3135556..3135566) { //TODO review I need to get another way of obtaining famous songs
+                val track = deezerService.fetchTrack(i.toLong())
+                tracks.add(track)
+            }
             Success(tracks)
         } catch (error: Throwable) {
             Failure(error)
@@ -36,7 +35,8 @@ object RemoteApi {
     suspend fun fetchTracks(): List<TrackResponse> {
         delay(1000)
 
-        val album = AlbumResponse(coverMedium = "https://e-cdns-images.dzcdn.net/images/cover/2e018122cb56986277102d2041a592c8/250x250-000000-80-0-0.jpg")
+        val album =
+            AlbumResponse(coverMedium = "https://e-cdns-images.dzcdn.net/images/cover/2e018122cb56986277102d2041a592c8/250x250-000000-80-0-0.jpg")
 
         return listOf(
             TrackResponse(

@@ -40,7 +40,7 @@ object NetworkingModule {
 
     @Provides
     @Singleton
-    fun provideDeezerService(retrofit:Retrofit) = retrofit.create(DeezerService::class.java)
+    fun provideDeezerService(retrofit: Retrofit) = retrofit.create(DeezerService::class.java)
 
     @Provides
     @Singleton

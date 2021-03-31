@@ -20,20 +20,20 @@ abstract class RepositoryModule {
     @Binds
     abstract fun providesRepository(
         impl: RepositoryImpl
-    ) : Repository
+    ): Repository
 
     @Binds
     abstract fun providesApiMapper(
         impl: ApiMapperImpl
-    ) : ApiMapper
+    ): ApiMapper
 
     @Binds
     abstract fun provideMediaPlayer(
         impl: MediaPlayerImpl
-    ) : MediaPlayer
+    ): MediaPlayer
 
     @Binds
     abstract fun provideGameFactory(
         impl: GameFactoryImpl
-    ) : GameFactory
+    ): GameFactory
 }

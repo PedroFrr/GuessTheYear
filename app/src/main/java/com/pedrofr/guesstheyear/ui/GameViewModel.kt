@@ -1,19 +1,18 @@
 package com.pedrofr.guesstheyear.ui
 
 import android.os.CountDownTimer
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pedrofr.guesstheyear.core.*
-import com.pedrofr.guesstheyear.data.db.entities.DbTracks
+import com.pedrofr.guesstheyear.core.GameState
 import com.pedrofr.guesstheyear.domain.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import kotlin.math.min
-import kotlin.random.Random
+import javax.inject.Inject
 
-class GameViewModel @ViewModelInject constructor(
+@HiltViewModel
+class GameViewModel @Inject constructor(
     private val repository: Repository,
     private val factory: GameFactory,
     private val mediaPlayer: MediaPlayer

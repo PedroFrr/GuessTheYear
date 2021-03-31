@@ -10,4 +10,4 @@ data class TrackResponse(
     @Json(name = "preview") val preview: String,
     @Json(name = "album") val album: AlbumResponse,
 
-)
+    )
