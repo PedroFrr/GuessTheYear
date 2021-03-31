@@ -2,10 +2,14 @@ package com.pedrofr.guesstheyear.util
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import java.time.LocalDate
 
 
@@ -45,7 +49,23 @@ fun View.invisible() {
     visibility = View.INVISIBLE
 }
 
-fun String.dateToYear(): Int{
+fun String.dateToYear(): Int {
     return LocalDate.parse(this).year
 }
+
+fun Context.getMyDrawable(id: Int): Drawable? {
+
+    return ContextCompat.getDrawable(this, id)
+}
+
+/**
+ * Glide helper functions
+ */
+fun ImageView.loadImage(imageUrl: String) {
+    Glide.with(this)
+        .load(imageUrl)
+        .centerCrop()
+        .into(this)
+}
+
 

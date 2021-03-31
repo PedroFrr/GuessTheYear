@@ -1,7 +1,5 @@
 package com.pedrofr.guesstheyear.data.db.entities
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import java.util.*
 
 

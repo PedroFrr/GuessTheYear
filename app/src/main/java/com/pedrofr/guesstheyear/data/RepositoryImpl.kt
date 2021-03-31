@@ -17,7 +17,7 @@ import javax.inject.Singleton
 @Singleton
 class RepositoryImpl @Inject constructor(
     private val apiMapper: ApiMapper,
-    private val deezerClient : DeezerClient,
+    private val deezerClient: DeezerClient,
     private val tracksDao: TracksDao,
 ) : Repository {
 
@@ -26,10 +26,10 @@ class RepositoryImpl @Inject constructor(
         val results = deezerClient.fetchTracks()
         return if (results is Success) {
             Success(apiMapper.mapTrackResponseToDomain(results.data))
-        }else {
+        } else {
             //TODO refactor this
             val resultsFailure = results as Failure
-            Failure(resultsFailure.error )
+            Failure(resultsFailure.error)
         }
     }
 

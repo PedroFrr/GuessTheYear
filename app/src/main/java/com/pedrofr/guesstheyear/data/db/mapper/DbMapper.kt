@@ -5,7 +5,7 @@ import com.pedrofr.guesstheyear.domain.model.Questions
 
 interface DbMapper {
 
-    fun mapDbQuestionsToDomain (questions: List<DbQuestions>): List<Questions>
+    fun mapDbQuestionsToDomain(questions: List<DbQuestions>): List<Questions>
 
-    fun mapDomainQuestionsToDb (questions: List<Questions>): List<DbQuestions>
+    fun mapDomainQuestionsToDb(questions: List<Questions>): List<DbQuestions>
 }

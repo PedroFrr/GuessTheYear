@@ -9,5 +9,6 @@ data class DbTracks(
     @PrimaryKey val trackId: String = UUID.randomUUID().toString(),
     val title: String,
     val releaseYear: Int,
-    val preview: String
+    val preview: String,
+    val albumCover: String
 )

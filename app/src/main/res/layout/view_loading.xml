@@ -29,22 +29,22 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/loadingContainer"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:gravity="center"
-  android:orientation="vertical">
+    android:id="@+id/loadingContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
-  <ProgressBar
-    android:id="@+id/progressBar"
-    style="?android:attr/progressBarStyleLarge"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-  <TextView
-    android:id="@+id/loadingTitle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/loading_default_text"
-    android:textColor="@color/colorAccent" />
+    <TextView
+        android:id="@+id/loadingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading_default_text"
+        android:textColor="@color/colorAccent" />
 </LinearLayout>

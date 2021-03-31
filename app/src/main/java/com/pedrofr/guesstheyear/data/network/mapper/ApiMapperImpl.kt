@@ -13,7 +13,8 @@ class ApiMapperImpl @Inject constructor() : ApiMapper {
                 DbTracks(
                     title = title,
                     releaseYear = releaseDate.dateToYear(),
-                    preview = preview
+                    preview = preview,
+                    albumCover = album.coverMedium
                 )
             }
         }
